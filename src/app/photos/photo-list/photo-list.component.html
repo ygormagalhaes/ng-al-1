@@ -1,3 +1,2 @@
-<h4 class="text-center mt-2 mb-5">{{ title }}</h4>
-<input type="search" placeholder="Search" class="form-control mb-1" (keyup)="filter = $event.target.value">
+<input type="search" placeholder="Search" class="form-control mt-2 mb-2" (keyup)="filter = $event.target.value">
 <ap-photos [photos]="photos | photosByDescription: filter"></ap-photos>

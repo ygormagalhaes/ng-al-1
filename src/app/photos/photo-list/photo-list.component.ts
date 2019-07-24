@@ -10,21 +10,15 @@ import { Photo } from '../photo/photo';
   styleUrls: ['./photo-list.component.scss']
 })
 export class PhotoListComponent implements OnInit {
-  title = '';
   filter = '';
   photos: Photo[] = [];
 
   constructor(
-    private photoService: PhotoService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    const username: string = this.activatedRoute.snapshot.params.username;
-    this.title = `${username}'s gallery`.toUpperCase();
-    this.photoService
-      .listPhotosFromUser(username)
-      .subscribe(photos => this.photos = photos);
+    this.photos = this.activatedRoute.snapshot.data.photos;
   }
 
 }
