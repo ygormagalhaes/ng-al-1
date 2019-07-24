@@ -11,7 +11,7 @@ import { Photo } from '../photo/photo';
 })
 export class PhotoListComponent implements OnInit {
 
-  title = 'Gallery';
+  title = '';
   photos: Photo[] = [];
 
   constructor(
@@ -21,6 +21,7 @@ export class PhotoListComponent implements OnInit {
 
   ngOnInit(): void {
     const username: string = this.activatedRoute.snapshot.params.username;
+    this.title = `${username}'s gallery`.toUpperCase();
     this.photoService
       .listPhotosFromUser(username)
       .subscribe(photos => this.photos = photos);
