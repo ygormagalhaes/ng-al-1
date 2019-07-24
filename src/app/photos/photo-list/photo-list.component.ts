@@ -10,8 +10,8 @@ import { Photo } from '../photo/photo';
   styleUrls: ['./photo-list.component.scss']
 })
 export class PhotoListComponent implements OnInit {
-
   title = '';
+  filter = '';
   photos: Photo[] = [];
 
   constructor(

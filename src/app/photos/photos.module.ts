@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { PhotoComponent } from './photo/photo.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
-import { CommonModule } from '@angular/common';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
+import { PhotosByDescriptionPipe } from './photo-list/photos-by-description.pipe';
 import { PhotosComponent } from './photo-list/photos/photos.component';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { PhotosComponent } from './photo-list/photos/photos.component';
         PhotoComponent,
         PhotoListComponent,
         PhotoFormComponent,
-        PhotosComponent
+        PhotosComponent,
+        PhotosByDescriptionPipe
     ],
     imports: [
         CommonModule,

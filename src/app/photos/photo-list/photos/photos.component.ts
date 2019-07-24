@@ -21,6 +21,7 @@ export class PhotosComponent implements OnChanges {
   }
 
   createRows(): void {
+    this.rows = [];
     for (let index = 0; index < this.photos.length; index += 3) {
       this.rows.push(this.photos.slice(index, index + 3));
     }
