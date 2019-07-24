@@ -1,2 +1,2 @@
-<input type="search" placeholder="Search" class="form-control mt-2 mb-2" (keyup)="filter = $event.target.value">
+<input type="search" placeholder="Search" class="form-control mt-2 mb-2" (keyup)="debounce.next($event.target.value)">
 <ap-photos [photos]="photos | photosByDescription: filter"></ap-photos>
