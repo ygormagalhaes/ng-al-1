@@ -1,9 +1,10 @@
 <ol class="list-unstyled">
     <li *ngFor="let row of rows" class="row">
-        <ap-photo
-            *ngFor="let col of row"
-            [url]="col.url"
-            [description]="col.description">
-        </ap-photo>
+        <div *ngFor="let col of row" class="col-md-4">
+            <ap-photo
+                [url]="col.url"
+                [description]="col.description">
+            </ap-photo>
+        </div>
     </li>
 </ol>
