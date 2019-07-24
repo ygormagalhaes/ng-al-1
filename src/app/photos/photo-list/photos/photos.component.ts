@@ -16,7 +16,6 @@ export class PhotosComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos) {
-      console.log('mudança detectada');
       this.createRows();
     }
   }
