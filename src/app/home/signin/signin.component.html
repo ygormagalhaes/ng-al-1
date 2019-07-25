@@ -1,6 +1,6 @@
 <h4 class="text-center">Login</h4>
 
-<form [formGroup]="loginForm" class="form mt-4">
+<form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
 
     <div class="form-group">
         <input formControlName="username" class="form-control" placeholder="user name" autofocus>
@@ -24,4 +24,4 @@
 
 </form>
 
-<p>Not a user?<a>Register now</a></p>
+<p>Not a user?&nbsp;<a>Register now</a></p>
