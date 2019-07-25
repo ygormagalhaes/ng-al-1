@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './signin.component.html'
@@ -10,7 +11,8 @@ export class SiginComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -24,11 +26,16 @@ export class SiginComponent implements OnInit {
         const userName = this.loginForm.get('username').value;
         const password = this.loginForm.get('password').value;
         this.authService.login({userName, password})
-            .subscribe(() => console.log('autenticado'),
-            err => this.catchErrorOnLogin(err));
+            .subscribe(
+                () => this.redirectAfterLogin(userName),
+                err => this.catchErrorOnLogin(err));
     }
 
-    private catchErrorOnLogin(err: Error) {
+    private redirectAfterLogin(username: string): void {
+        this.router.navigate(['user', username]);
+    }
+
+    private catchErrorOnLogin(err: Error): void {
         this.loginForm.reset();
         console.error('não foi possível logar.');
     }
