@@ -1,7 +1,7 @@
 <h3 class="text-center text-muted" *ngIf="!photos.length">No photos</h3>
 <ol class="list-unstyled">
     <li *ngFor="let row of rows" class="row no-gutters">
-        <div *ngFor="let photo of row" class="col-md-4" darkenOnHover>
+        <div *ngFor="let photo of row" class="col-md-4" darkenOnHover brightness="80%">
             <ap-card [title]="photo.description">
                 <ap-photo
                     [url]="photo.url"
