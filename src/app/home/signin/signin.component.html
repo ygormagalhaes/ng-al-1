@@ -3,7 +3,7 @@
 <form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
 
     <div class="form-group">
-        <input formControlName="username" class="form-control" placeholder="user name" autofocus>
+        <input #usernameInput formControlName="username" class="form-control" placeholder="user name" autofocus>
         <ap-validation-message
             *ngIf="loginForm.get('username').errors?.required"
             message="Username is required!">
