@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Photo } from '../photo/photo';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { PhotoService } from '../photo/photo.service';
 
 @Component({
@@ -11,10 +9,9 @@ import { PhotoService } from '../photo/photo.service';
   templateUrl: './photo-list.component.html',
   styleUrls: ['./photo-list.component.scss']
 })
-export class PhotoListComponent implements OnInit, OnDestroy {
+export class PhotoListComponent implements OnInit {
   filter = '';
   photos: Photo[] = [];
-  debounce: Subject<string> = new Subject<string>();
   hasMore = true;
   currentPage = 1;
   username: string;
@@ -27,16 +24,10 @@ export class PhotoListComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
       this.username = this.activatedRoute.snapshot.params.username;
       this.photos = this.activatedRoute.snapshot.data.photos;
-      this.debounce
-      .pipe(debounceTime(300))
-      .subscribe(filter => this.filter = filter);
-    }
-
-    ngOnDestroy(): void {
-      this.debounce.unsubscribe();
     }
 
     load() {
+      this.filter = '';
       this.photoService.listPhotosFromUserPaginated(this.username, ++this.currentPage)
         .subscribe(photos => this.setHasMoreValue(photos));
         // .subscribe(photos => this.setHasMoreValue(photos)); FIXME: Problema com 'this' com esse uso.
