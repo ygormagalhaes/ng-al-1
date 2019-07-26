@@ -36,7 +36,7 @@
             message="Username is required!">
         </ap-validation-message>
         <ap-validation-message
-            *ngIf="signupForm.get('username').errors?.pattern"
+            *ngIf="signupForm.get('username').errors?.lowercase"
             message="Username must be lower case!">
         </ap-validation-message>
         <ap-validation-message
