@@ -3,7 +3,8 @@
         <a class="navbar-brand">ALURAPIC</a>
         <div *ngIf="(user$ | async) as user; else login">
             <i class="fa fa-user-circle"></i>
-            <a class="ml-2">{{ user?.name }}</a>
+            <a class="ml-2">{{ user?.name | uppercase }}</a>
+            <a (click)="logout()" class="ml-2 logout-link">[Logout]</a>
         </div>
         <ng-template #login>
             <div>
