@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowercaseValidator } from 'src/app/shared/validators/lowercase.validator';
+import { UsernameAlreadyTakenService } from 'src/app/home/signup/username-already-taken.service';
 
 @Component({
     templateUrl: './signup.component.html'
 })
-export class SigupComponent implements OnInit {
+export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private usernameAlreadyTakenService: UsernameAlreadyTakenService
+    ) { }
 
     ngOnInit(): void {
         this.signupForm = this.formBuilder.group({
@@ -31,7 +35,8 @@ export class SigupComponent implements OnInit {
                     lowercaseValidator,
                     Validators.minLength(2),
                     Validators.maxLength(30)
-                ]
+                ],
+                this.usernameAlreadyTakenService.usernameAlreadyTaken()
             ],
             password: ['',
                 [
