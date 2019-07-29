@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { HomeRoutesModule } from './home.routes';
+import { SignupService } from './signup/signup.service';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,9 @@ import { HomeRoutesModule } from './home.routes';
         RouterModule,
         HttpClientModule,
         HomeRoutesModule
+    ],
+    providers: [
+        SignupService
     ]
 })
 export class HomeModule { }
