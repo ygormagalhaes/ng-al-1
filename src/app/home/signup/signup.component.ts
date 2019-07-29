@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowercaseValidator } from 'src/app/shared/validators/lowercase.validator';
 import { UsernameAlreadyTakenService } from 'src/app/home/signup/username-already-taken.service';
 import { NewUser } from './new-user';
 import { SignupService } from './signup.service';
+import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component({
     templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
+    @ViewChild('emailInput', { static: true })
+    emailInput: ElementRef<HTMLInputElement>;
+
     signupForm: FormGroup;
 
     constructor(
         private formBuilder: FormBuilder,
         private usernameAlreadyTakenService: UsernameAlreadyTakenService,
         private signupService: SignupService,
-        private router: Router
+        private router: Router,
+        private platformDetectorService: PlatformDetectorService
     ) { }
 
     ngOnInit(): void {
@@ -51,6 +56,8 @@ export class SignupComponent implements OnInit {
                 ]
             ]
         });
+
+        this.setFocusToEmailInputInput();
     }
 
     signup() {
@@ -59,5 +66,11 @@ export class SignupComponent implements OnInit {
             .subscribe(
                 () => this.router.navigate(['']),
                 err => console.log(err));
+    }
+
+    private setFocusToEmailInputInput() {
+        if (this.platformDetectorService.isPlaftormBrowser()) {
+            this.emailInput.nativeElement.focus();
+        }
     }
 }

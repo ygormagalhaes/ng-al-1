@@ -8,7 +8,7 @@ import { PlatformDetectorService } from 'src/app/core/platform/platform-detector
     templateUrl: './signin.component.html'
 })
 export class SiginComponent implements OnInit {
-    @ViewChild('usernameInput', { static: false })
+    @ViewChild('usernameInput', { static: true })
     usernameInput: ElementRef<HTMLInputElement>;
 
     loginForm: FormGroup;
@@ -25,6 +25,7 @@ export class SiginComponent implements OnInit {
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
+        this.setFocusToUsernameInput();
     }
 
     login(): void {
