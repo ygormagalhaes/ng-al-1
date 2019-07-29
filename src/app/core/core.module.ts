@@ -6,14 +6,21 @@ import { HeaderComponent } from './header/header.component';
 import { TokenService } from './token/token.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './auth/request.interceptor';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-    declarations: [ HeaderComponent ],
+    declarations: [
+        HeaderComponent,
+        FooterComponent
+    ],
     imports: [
         CommonModule,
         RouterModule
     ],
-    exports: [ HeaderComponent ],
+    exports: [
+        HeaderComponent,
+        FooterComponent
+    ],
     providers: [
         TokenService,
         {
