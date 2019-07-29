@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PhotoFormComponent } from './photo-form.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { PhotoFormComponent } from './photo-form.component';
 import { ValidationMessageModule } from 'src/app/shared/components/validation-message/validation-message.module';
 
 @NgModule({
@@ -9,7 +11,8 @@ import { ValidationMessageModule } from 'src/app/shared/components/validation-me
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        ValidationMessageModule
+        ValidationMessageModule,
+        RouterModule
     ]
 })
 export class PhotoFormModule { }
