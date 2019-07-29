@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { TokenService } from './token/token.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from './auth/request.interceptor';
 
 @NgModule({
     declarations: [ HeaderComponent ],
@@ -12,6 +14,13 @@ import { TokenService } from './token/token.service';
         RouterModule
     ],
     exports: [ HeaderComponent ],
-    providers: [ TokenService ]
+    providers: [
+        TokenService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: RequestInterceptor,
+            multi: true
+        }
+    ]
 })
 export class CoreModule { }
