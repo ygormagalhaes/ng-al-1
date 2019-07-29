@@ -9,7 +9,7 @@ type canActivateReturnType = boolean | UrlTree | Observable<boolean | UrlTree> |
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
     constructor(
         private userService: UserService,
@@ -17,8 +17,8 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): canActivateReturnType {
-        if (!this.userService.isLogged()) {
-            this.router.navigate(['']);
+        if (this.userService.isLogged()) {
+            this.router.navigate(['user', this.userService.getUsername()]);
             return false;
         }
         return true;
