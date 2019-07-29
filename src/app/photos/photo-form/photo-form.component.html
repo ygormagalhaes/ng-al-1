@@ -1,22 +1,34 @@
 <div class="container">
-    <form class="row">
+    <form  [formGroup]="photoForm" class="row">
         <div class="col-md-6 text-center">
-            <input type="file" accept="image/*">
+            <input formControlName="file" type="file" accept="image/*">
+            <ap-validation-message
+                *ngIf="photoForm.get('file').errors?.required"
+                message="Select a photo!">
+            </ap-validation-message>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <textarea class="form-control form-control-sm" placeholder="photo description"></textarea>
+                <textarea formControlName="description" class="form-control form-control-sm" placeholder="photo description"></textarea>
+                <ap-validation-message
+                    *ngIf="photoForm.get('description').errors?.required"
+                    message="Description is required!">
+                </ap-validation-message>
+                <ap-validation-message
+                    *ngIf="photoForm.get('description').errors?.maxlength"
+                    message="Maxlength is 300!">
+                </ap-validation-message>
             </div>
 
             <div class="form-group">
                 <label class="text-muted">
                     Allow comments
-                    <input type="checkbox">
+                    <input formControlName="comments" type="checkbox">
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">
+            <button [disabled]="photoForm.invalid" type="submit" class="btn btn-primary btn-block">
                 Upload
             </button>
 
