@@ -17,7 +17,7 @@ export class UsernameAlreadyTakenService {
             return control.valueChanges
                 .pipe(debounceTime(300))
                 .pipe(switchMap(username => {
-                    return this.signupService.isUserNameAlreadyTaken(username)
+                    return this.signupService.isUserNameAlreadyTaken(username);
                 }))
                 .pipe(map(isTaken => {
                     return isTaken ? { usernameAlreadyTaken: true } : null;
