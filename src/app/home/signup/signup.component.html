@@ -48,7 +48,7 @@
             message="Maximum length is 30!">
         </ap-validation-message>
         <ap-validation-message
-            *ngIf="signupForm.get('userName').errors?.userNameAlreadyTaken"
+            *ngIf="signupForm.get('userName').errors?.usernameAlreadyTaken"
             message="userName already taken!">
         </ap-validation-message>
         <small class="text-success d-block mt-2" *ngIf="signupForm.get('userName').valid">
