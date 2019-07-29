@@ -30,7 +30,6 @@ export class PhotoListComponent implements OnInit {
       this.filter = '';
       this.photoService.listPhotosFromUserPaginated(this.username, ++this.currentPage)
         .subscribe(photos => this.setHasMoreValue(photos));
-        // .subscribe(photos => this.setHasMoreValue(photos)); FIXME: Problema com 'this' com esse uso.
     }
 
     private setHasMoreValue(photos: Photo[]): void {
