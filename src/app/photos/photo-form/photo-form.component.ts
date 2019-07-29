@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class PhotoFormComponent implements OnInit {
   photo: File;
   photoForm: FormGroup;
+  previewBase64: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +37,13 @@ export class PhotoFormComponent implements OnInit {
     const comments = this.photoForm.get('comments').value;
     this.photoService.upload(description, comments, this.photo)
       .subscribe(() => this.router.navigate(['']));
+  }
+
+  handleInputFileChange(photo: File) {
+    this.photo = photo;
+    const fileReader = new FileReader();
+    fileReader.onload = (event: any) => this.previewBase64 = event.target.result;
+    fileReader.readAsDataURL(photo);
   }
 
 }

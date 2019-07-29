@@ -5,14 +5,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { PhotoFormComponent } from './photo-form.component';
 import { ValidationMessageModule } from 'src/app/shared/components/validation-message/validation-message.module';
+import { PhotoModule } from '../photo/photo.module';
+import { ImmediateClickModule } from 'src/app/shared/directives/immediate-click/immediate-click.module';
 
 @NgModule({
     declarations: [ PhotoFormComponent ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        RouterModule,
         ValidationMessageModule,
-        RouterModule
+        PhotoModule,
+        ImmediateClickModule
     ]
 })
 export class PhotoFormModule { }
