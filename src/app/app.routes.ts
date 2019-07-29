@@ -1,31 +1,36 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { SiginComponent } from './home/signin/signin.component';
-import { SignupComponent } from './home/signup/signup.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent,
-        children: [
-            { path: '', component: SiginComponent, canActivate: [AuthGuard] },
-            { path: 'signup', component: SignupComponent },
-        ]
+        pathMatch: 'full',
+        redirectTo: 'home'
     },
     {
-        path: 'user/:username', component: PhotoListComponent, resolve: {
+        path: 'home',
+        loadChildren: './home/home.module#HomeModule'
+    },
+    {
+        path: 'user/:username',
+        component: PhotoListComponent,
+        resolve: {
             photos: PhotoListResolver
         }
     },
-    { path: 'p/add', component: PhotoFormComponent },
-    { path: '**', component: NotFoundComponent }
+    {
+        path: 'p/add',
+        component: PhotoFormComponent
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
 ];
 
 @NgModule({

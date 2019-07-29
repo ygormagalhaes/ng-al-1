@@ -8,6 +8,7 @@ import { ValidationMessageModule } from '../shared/components/validation-message
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
+import { HomeRoutesModule } from './home.routes';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './home.component';
         ReactiveFormsModule,
         ValidationMessageModule,
         RouterModule,
-        HttpClientModule
+        HttpClientModule,
+        HomeRoutesModule
     ]
 })
 export class HomeModule { }
