@@ -8,7 +8,8 @@ import { SignupService } from './signup.service';
 import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component({
-    templateUrl: './signup.component.html'
+    templateUrl: './signup.component.html',
+    providers: [ UsernameAlreadyTakenService ]
 })
 export class SignupComponent implements OnInit {
     @ViewChild('emailInput', { static: true })
