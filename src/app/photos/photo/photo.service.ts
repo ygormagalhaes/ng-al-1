@@ -32,4 +32,9 @@ export class PhotoService {
 
         return this.httpClient.post(`${this.API_URL}photos/upload`, formData);
     }
+
+    findBydId(id: string): Observable<Photo> {
+        return this.httpClient.get<Photo>(`${this.API_URL}photos/${id}`);
+    }
+
 }

@@ -3,7 +3,7 @@
     <li *ngFor="let row of rows" class="row no-gutters">
         <div *ngFor="let photo of row" class="col-md-4" darkenOnHover brightness="80%">
             <a [routerLink]="['/p', photo.id]">
-                <ap-card [title]="photo.description">
+                <ap-card>
                     <ap-photo [url]="photo.url" [description]="photo.description">
                     </ap-photo>
                     <div class="text-center">
