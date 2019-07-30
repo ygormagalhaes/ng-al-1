@@ -21,4 +21,7 @@
             </div>
         </div>
     </div>
+    <div class="row" *ngIf="(comments$ | async) as comments">
+        <ap-photo-comments [comments]="comments"></ap-photo-comments>
+    </div>
 </div>
