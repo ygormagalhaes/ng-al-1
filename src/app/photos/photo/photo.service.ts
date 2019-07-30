@@ -41,4 +41,8 @@ export class PhotoService {
     getComments(photoId: number): Observable<PhotoComment[]> {
         return this.httpClient.get<PhotoComment[]>(`${this.API_URL}photos/${photoId}/comments`);
     }
+
+    addComment(photoId: number, commentText: string) {
+        return this.httpClient.post(`${this.API_URL}photos/${photoId}/comments`, { commentText });
+    }
 }
