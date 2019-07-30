@@ -8,10 +8,10 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
+        CommonModule,
         PhotoListModule,
         PhotoFormModule,
-        PhotoDetailsModule,
-        CommonModule
+        PhotoDetailsModule
     ]
 })
 export class PhotosModule { }
