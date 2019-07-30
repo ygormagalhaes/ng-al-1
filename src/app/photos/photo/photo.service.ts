@@ -38,7 +38,7 @@ export class PhotoService {
         return this.httpClient.get<Photo>(`${this.API_URL}photos/${photoId}`);
     }
 
-    getComments(photoId: number): Observable<PhotoComment> {
-        return this.httpClient.get<PhotoComment>(`${this.API_URL}photos/${photoId}/comments`);
+    getComments(photoId: number): Observable<PhotoComment[]> {
+        return this.httpClient.get<PhotoComment[]>(`${this.API_URL}photos/${photoId}/comments`);
     }
 }
