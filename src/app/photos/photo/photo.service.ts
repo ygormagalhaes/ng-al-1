@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Photo } from './photo';
+import { PhotoComment } from './photo-comment';
 
 @Injectable({
     providedIn: 'root'
@@ -33,8 +34,11 @@ export class PhotoService {
         return this.httpClient.post(`${this.API_URL}photos/upload`, formData);
     }
 
-    findBydId(id: string): Observable<Photo> {
-        return this.httpClient.get<Photo>(`${this.API_URL}photos/${id}`);
+    findBydId(photoId: number): Observable<Photo> {
+        return this.httpClient.get<Photo>(`${this.API_URL}photos/${photoId}`);
     }
 
+    getComments(photoId: number): Observable<PhotoComment> {
+        return this.httpClient.get<PhotoComment>(`${this.API_URL}photos/${photoId}/comments`);
+    }
 }
