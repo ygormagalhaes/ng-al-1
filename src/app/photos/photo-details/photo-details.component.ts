@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Photo } from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
+import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
     templateUrl: './photo-details.component.html'
@@ -16,7 +17,8 @@ export class PhotoDetailsComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private photoService: PhotoService,
         private router: Router,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private userService: UserService
     ) { }
 
     ngOnInit(): void {
@@ -27,8 +29,8 @@ export class PhotoDetailsComponent implements OnInit {
     remove(): void {
         this.photoService.remove(this.photoId)
             .subscribe(() => {
-                this.alertService.success('Photo deleted!');
-                this.router.navigate(['']);
+                this.alertService.success('Photo deleted!', true);
+                this.router.navigate(['/user', this.userService.getUsername()]);
             });
     }
 }
