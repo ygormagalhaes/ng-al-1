@@ -5,13 +5,14 @@ import { Observable, of, throwError } from 'rxjs';
 import { Photo } from './photo';
 import { PhotoComment } from './photo-comment';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PhotoService {
 
-    private readonly API_URL = 'http://localhost:3000/';
+    private readonly API_URL = environment.apiUrl;
 
     constructor(private httpClient: HttpClient) { }
 

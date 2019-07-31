@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NewUser } from './new-user';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class SignupService {
-    private readonly API_URL = 'http://localhost:3000/';
+    private readonly API_URL = environment.apiUrl;
 
     constructor(private httpClient: HttpClient) { }
 
