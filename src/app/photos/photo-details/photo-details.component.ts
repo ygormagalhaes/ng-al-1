@@ -37,4 +37,14 @@ export class PhotoDetailsComponent implements OnInit {
                 this.router.navigate(['/user', this.userService.getUsername()]);
             });
     }
+
+    like(photo: Photo) {
+        this.photoService.like(photo.id).subscribe(liked => {
+            if (liked) {
+                this.photo$ = this.photoService.findBydId(photo.id);
+            }
+        }, err => {
+            this.alertService.warning('Photo not liked :(');
+        });
+    }
 }

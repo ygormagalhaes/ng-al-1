@@ -47,7 +47,7 @@ export class AlertService {
         return this.alertSubject.asObservable();
     }
 
-    clear(): void {
+    private clear(): void {
         this.alertSubject.next(null);
     }
 }

@@ -52,13 +52,13 @@ export class PhotoService {
     }
 
     like(photoId: number) {
-        return this.httpClient.post(`${this.API_URL}photos/${photoId}/likes`, {}, { observe: 'response' })
+        return this.httpClient.post(`${this.API_URL}photos/${photoId}/like`, {}, { observe: 'response' })
             .pipe(map(() => true))
             .pipe(catchError(err => {
-                if (err.status === '304') {
+                if (err.status === 304) {
                     return of(false);
                 } else {
-                    throwError(err);
+                    return throwError(err);
                 }
             }));
     }
