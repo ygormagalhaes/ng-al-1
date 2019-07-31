@@ -7,22 +7,22 @@ import { Subject, Observable } from 'rxjs';
 })
 export class AlertService {
 
-    alertSubject: Subject<Alert>;
+    alertSubject: Subject<Alert> = new Subject<Alert>();
 
-    success(alertType: AlertType, message: string) {
-        this.alert(alertType, message);
+    success(message: string) {
+        this.alert(AlertType.SUCCESS, message);
     }
 
-    warning(alertType: AlertType, message: string) {
-        this.alert(alertType, message);
+    warning(message: string) {
+        this.alert(AlertType.WARNING, message);
     }
 
-    danger(alertType: AlertType, message: string) {
-        this.alert(alertType, message);
+    danger(message: string) {
+        this.alert(AlertType.DANGER, message);
     }
 
-    info(alertType: AlertType, message: string) {
-        this.alert(alertType, message);
+    info(message: string) {
+        this.alert(AlertType.INFO, message);
     }
 
     private alert(alertType: AlertType, message: string) {

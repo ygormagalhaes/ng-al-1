@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PhotoService } from '../photo/photo.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
 @Component({
   selector: 'ap-photo-form',
@@ -16,7 +17,8 @@ export class PhotoFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private photoService: PhotoService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,10 @@ export class PhotoFormComponent implements OnInit {
     const description = this.photoForm.get('description').value;
     const comments = this.photoForm.get('comments').value;
     this.photoService.upload(description, comments, this.photo)
-      .subscribe(() => this.router.navigate(['']));
+      .subscribe(() => {
+        this.alertService.success('Photo uploaded!');
+        this.router.navigate(['']);
+      });
   }
 
   handleInputFileChange(photo: File) {
