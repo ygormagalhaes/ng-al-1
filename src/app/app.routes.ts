@@ -16,27 +16,42 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        loadChildren: './home/home.module#HomeModule'
+        loadChildren: './home/home.module#HomeModule',
+        data: {
+            title: 'Home'
+        }
     },
     {
         path: 'user/:username',
         component: PhotoListComponent,
         resolve: {
             photos: PhotoListResolver
+        },
+        data: {
+            title: 'Photo list'
         }
     },
     {
         path: 'p/add',
         component: PhotoFormComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard ],
+        data: {
+            title: 'Add photo'
+        }
     },
     {
         path: 'p/:photoId',
-        component: PhotoDetailsComponent
+        component: PhotoDetailsComponent,
+        data: {
+            title: 'Photo detail'
+        }
     },
     {
         path: 'not-found',
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        data: {
+            title: 'Not found'
+        }
     },
     {
         path: '**',
