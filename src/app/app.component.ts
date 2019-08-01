@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       .pipe(filter(e => e instanceof NavigationEnd))
       .pipe(map(() => this.activatedRoute))
       .pipe(map(route => {
-        while(route.firstChild) {
+        while (route.firstChild) {
           route = route.firstChild;
         }
         return route;
