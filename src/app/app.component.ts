@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from './photos/photo/photo.service';
-import { Router, ActivatedRoute, NavigationEnd, RouteReuseStrategy } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, switchMap } from 'rxjs/operators';
 
