@@ -6,8 +6,8 @@
         </a>
         <ap-menu #menu>
             <ul>
-                <li><a [routerLink]="['/p', 'add']">Add photo</a></li>
-                <li><a (click)="logout()">Logout</a></li>
+                <li showIfLogged><a [routerLink]="['/p', 'add']">Add photo</a></li>
+                <li showIfLogged><a (click)="logout()">Logout</a></li>
             </ul>
         </ap-menu>
 

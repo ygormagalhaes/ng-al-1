@@ -9,7 +9,6 @@ export class MenuComponent {
     isShown = false;
 
     toggle(): void {
-        console.log('alterando estado de visualização');
         this.isShown = !this.isShown;
     }
 }
