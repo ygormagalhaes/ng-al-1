@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-    isShow = false;
+    isShown = false;
 
     toggle(): void {
         console.log('alterando estado de visualização');
-        this.isShow = !this.isShow;
+        this.isShown = !this.isShown;
     }
 }
