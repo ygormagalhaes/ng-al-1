@@ -2,17 +2,20 @@ import { ErrorHandler, Injector } from '@angular/core';
 import * as StackTrace from 'stacktrace-js';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { UserService } from 'src/app/core/user/user.service';
+import { ServerLoggerService } from './server-logger.service';
 
 export class GlobalErrorHandler implements ErrorHandler {
 
     constructor(private injector: Injector) { }
 
+    // TODO: Refatorar método.
     handleError(error: any): void {
         const location = this.injector.get(LocationStrategy);
         const userService = this.injector.get(UserService);
+        const serverLoggerService = this.injector.get(ServerLoggerService);
 
         const url = location instanceof PathLocationStrategy
-            ? location.path : '';
+            ? location.path() : '';
 
         const message = error instanceof Error
             ? error.message : error.toString();
@@ -31,8 +34,11 @@ export class GlobalErrorHandler implements ErrorHandler {
             console.log(message);
             console.log(stringStack);
 
-            console.log('Erro a ser enviado:');
-            console.log(errorObject);
+            serverLoggerService.logError(errorObject)
+                .subscribe(
+                    () => console.log('Error logged on server.'),
+                    err => console.log('Fail to log error on server.')
+                );
         });
     }
 }
