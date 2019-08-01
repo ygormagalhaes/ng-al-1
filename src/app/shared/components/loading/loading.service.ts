@@ -12,12 +12,10 @@ export class LoadingService {
     }
 
     start(): void {
-        console.log('startando loading');
         this.loadingSubject.next(LoadingType.LOADING);
     }
 
     stop(): void {
-        console.log('parando loading');
         this.loadingSubject.next(LoadingType.STOPPED);
     }
 }
