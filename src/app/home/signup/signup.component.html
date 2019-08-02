@@ -70,6 +70,10 @@
             *ngIf="signupForm.get('password').errors?.maxlength && form.submitted"
             message="Maximum length is 14!">
         </ap-validation-message>
+        <ap-validation-message
+            *ngIf="signupForm.errors?.usernamePassword"
+            message="Username and password must be different!">
+        </ap-validation-message>
     </div>
 
     <button class="btn btn-primary btn-block">Register</button>

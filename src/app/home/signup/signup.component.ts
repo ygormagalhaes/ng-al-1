@@ -6,6 +6,7 @@ import { UsernameAlreadyTakenService } from 'src/app/home/signup/username-alread
 import { NewUser } from './new-user';
 import { SignupService } from './signup.service';
 import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
+import { usernamePasswordValidator } from './username-password.validator';
 
 @Component({
     templateUrl: './signup.component.html',
@@ -56,6 +57,8 @@ export class SignupComponent implements OnInit {
                     Validators.maxLength(14)
                 ]
             ]
+        }, {
+            validators: usernamePasswordValidator
         });
 
         this.setFocusToEmailInputInput();

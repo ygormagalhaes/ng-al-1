@@ -12,7 +12,13 @@ const routes: Routes = [
         canActivate: [LoginGuard],
         children: [
             { path: '', component: SiginComponent },
-            { path: 'signup', component: SignupComponent },
+            {
+                path: 'signup',
+                component: SignupComponent,
+                data: {
+                    title: 'Signup'
+                }
+            },
         ]
     }
 ];
