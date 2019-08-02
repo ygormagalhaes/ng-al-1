@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
 @Component({
@@ -12,12 +12,14 @@ export class SiginComponent implements OnInit {
     usernameInput: ElementRef<HTMLInputElement>;
 
     loginForm: FormGroup;
+    fromUrl: string;
 
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
         private router: Router,
-        private platformDetectorService: PlatformDetectorService
+        private platformDetectorService: PlatformDetectorService,
+        private activatedRoute: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
@@ -26,6 +28,20 @@ export class SiginComponent implements OnInit {
             password: ['', Validators.required]
         });
         this.setFocusToUsernameInput();
+        this.getFromUrl();
+    }
+
+    // Seta o focus apenas se renderizando em browser p/ evitar problemas com server rendering.
+    private setFocusToUsernameInput() {
+        if (this.platformDetectorService.isPlaftormBrowser()) {
+            this.usernameInput.nativeElement.focus();
+        }
+    }
+
+    private getFromUrl() {
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            this.fromUrl = queryParams.from;
+        });
     }
 
     login(): void {
@@ -38,19 +54,14 @@ export class SiginComponent implements OnInit {
     }
 
     private redirectAfterLogin(username: string): void {
-        this.router.navigate(['user', username]);
+        this.fromUrl
+            ? this.router.navigateByUrl(this.fromUrl)
+            : this.router.navigate(['user', username]);
     }
 
     private catchErrorOnLogin(err: Error): void {
         this.loginForm.reset();
         this.setFocusToUsernameInput();
         console.error('não foi possível logar.');
-    }
-
-    // Seta o focus apenas se renderizando em browser p/ evitar problemas com server rendering.
-    private setFocusToUsernameInput() {
-        if (this.platformDetectorService.isPlaftormBrowser()) {
-            this.usernameInput.nativeElement.focus();
-        }
     }
 }
