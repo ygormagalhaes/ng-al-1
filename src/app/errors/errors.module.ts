@@ -5,13 +5,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PhotosModule } from '../photos/photos.module';
 import { GlobalErrorHandler } from './global-error-handler/global-error-handler';
 import { ServerLoggerService } from './global-error-handler/server-logger.service';
+import { GlobalErrorComponent } from './global-error/global-error.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [NotFoundComponent],
+  declarations: [
+    NotFoundComponent,
+    GlobalErrorComponent
+  ],
   imports: [
     CommonModule,
     PhotosModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     ServerLoggerService,

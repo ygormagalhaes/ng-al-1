@@ -3,6 +3,7 @@ import * as StackTrace from 'stacktrace-js';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { UserService } from 'src/app/core/user/user.service';
 import { ServerLoggerService } from './server-logger.service';
+import { Router } from '@angular/router';
 
 export class GlobalErrorHandler implements ErrorHandler {
 
@@ -13,12 +14,15 @@ export class GlobalErrorHandler implements ErrorHandler {
         const location = this.injector.get(LocationStrategy);
         const userService = this.injector.get(UserService);
         const serverLoggerService = this.injector.get(ServerLoggerService);
+        const router = this.injector.get(Router);
 
         const url = location instanceof PathLocationStrategy
             ? location.path() : '';
 
         const message = error instanceof Error
             ? error.message : error.toString();
+
+        router.navigate(['/error']);
 
         StackTrace.fromError(error).then(errorArray => {
             const stringStack = errorArray
