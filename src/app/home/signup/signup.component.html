@@ -4,11 +4,11 @@
     <div class="form-group">
         <input #emailInput formControlName="email" placeholder="email" class="form-control" autofocus>
         <ap-validation-message
-            *ngIf="signupForm.get('email').errors?.required && form.submitted"
+            *ngIf="signupForm.get('email').errors?.required && (form.submitted || signupForm.get('email').touched)"
             message="Email is required!">
         </ap-validation-message>
         <ap-validation-message
-            *ngIf="signupForm.get('email').errors?.email && form.submitted"
+            *ngIf="signupForm.get('email').errors?.email && (form.submitted || signupForm.get('email').touched)"
             message="Invalid email!">
         </ap-validation-message>
     </div>
